@@ -1,4 +1,5 @@
-# Checklist for website reviews
+
+# Frontend Checklist for Websites
 
 ## Performance
 
@@ -9,8 +10,8 @@
 * CDN is used for content pages
 * Cookie-Less Domain is used for static files
 * DNS prefetching is used
-  * <link rel="preload" as="script"> (CSS, JS and fonts)
-  * <link rel="dns-prefetch"> (for Domain, which provides static resources, eg.: Images, and Tracking Tools)
+  * `<link rel="preload" as="script">` (CSS, JS and fonts)
+  * `<link rel="dns-prefetch">` (for Domain, which provides static resources, eg.: Images, and Tracking Tools)
 
 ### Resources
 
@@ -66,7 +67,7 @@ Usually I measure the main pages of a project here.
 * Memory usage
 * GPU Auslastung
 
-## Cross-Browser Unterstützung
+## Cross-Browser
 
 * Website is loading on all current desktop browsers (Safari, Firefox, Chrome, IE11, EDGE)
 * Website is loading on all current mobile browser (Chrome for Android, iOS Safari)
@@ -101,7 +102,7 @@ Usually I measure the main pages of a project here.
 * Canonical Tags are used if applicable
 * Ratio Code:Inhalt is around 25% for shop pages and 50% for content pages
 
-## Zugänglichkeit
+## Accessibility
 
 * Color Contrast is good (WCAG 2.0)
 * WAI-ARIA roles are used
