@@ -25,9 +25,9 @@
 - [ ] CSS: No usage of @import
 - [ ] No CSS inline
 - [ ] HTML minified
-- [ ] Static files are compressed with gzip
+- [ ] Static files are compressed with gzip or brotli
 - [ ] Static files are pre-compressed on the server
-- [ ] HTML is compressed with gzip
+- [ ] HTML is compressed with gzip or brotli
 - [ ] Usage of correct image image formats
 - [ ] Usage of responsive images
 - [ ] Images are optimized (ImageOptim…)
@@ -35,11 +35,11 @@
 - [ ] SVG files are minized
 - [ ] SVG files are used where possible
 - [ ] Only fonts that are used are loaded
-- [ ] Browser cache is used wird genutzt
+- [ ] Browser cache is used efficiently
 - [ ] ETags is not used
 - [ ] Expires, cache-control and max-age headers for static resources is set to 1 year
 
-- [ ] Asychronous loading of non-critical content
+- [ ] Asychronous or deferred loading of non-critical content
 - [ ] Tracking scripts loaded asynchronously
 
 ### Measurements
@@ -49,29 +49,30 @@ Usually I measure the main pages of a project here.
 - [ ] Count of all files
 - [ ] Size of all files combined
 - [ ] Download time of the page
-- [ ] Google Page Speed analyses (Desktop, Mobile and Mobile UX; x of 100)
+- [ ] Google Page Speed analysis (Desktop, Mobile and Mobile UX; x of 100)
+- [ ] SpeedIndex
 
 ### Rendering Performance
 
-- [ ] Image sizes are specified on the website
-- [ ] CSS is loaded in the header
-- [ ] Scripts are loaded in the footer
+- [ ] Intrinsic image sizes are specified in the markup
+- [ ] CSS is loaded in the document head
+- [ ] Scripts are loaded at the end of the document
 - [ ] Scripts are loaded with `defer`-attribute
-- [ ] Scripts are loaded in the header after styles are loaded
-- [ ] Scrollen is possible with 60fps
-- [ ] No usage of document.write
+- [ ] Scripts are loaded in the document head after styles are loaded
+- [ ] Scrolling is possible with 60fps
+- [ ] No usage of `document.write`
 
 ## Device performance
 
 - [ ] CPU usage
 - [ ] Memory usage
-- [ ] GPU Auslastung
+- [ ] GPU usage
 
 ## Cross-Browser
 
 - [ ] Website is loading on all current desktop browsers (Safari, Firefox, Chrome, IE11, EDGE)
 - [ ] Website is loading on all current mobile browser (Chrome for Android, iOS Safari)
-- [ ] For Shops: Checkout is usable on all devices and browser necessary
+- [ ] For Shops: Checkout is usable on all necessary devices and browsers
 - [ ] Viewport Meta Tag is used correctly
 - [ ] Usage of correct input types
 
@@ -100,7 +101,7 @@ Usually I measure the main pages of a project here.
 - [ ] No 404-errors
 - [ ] No 500-errors
 - [ ] Canonical Tags are used if applicable
-- [ ] Ratio Code:Inhalt is around 25% for shop pages and 50% for content pages
+- [ ] Ratio of code and content is around 25% for shop pages and 50% for content pages
 
 ## Accessibility
 
@@ -119,6 +120,7 @@ Usually I measure the main pages of a project here.
 - [ ] Robots.txt is in use
 - [ ] Cross-Site-Scripting is not possible
 - [ ] HSTS Header is set
+- [ ] Content-Security-Policy is set and only allows specific hosts and no inline scripts
 
 ## More
 
