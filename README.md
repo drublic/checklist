@@ -28,7 +28,7 @@
 - [ ] Static files are compressed with gzip
 - [ ] Static files are pre-compressed on the server
 - [ ] HTML is compressed with gzip
-- [ ] Usage of correct image image formats
+- [ ] Usage of correct image formats
 - [ ] Usage of responsive images
 - [ ] Images are optimized (ImageOptim…)
 - [ ] Image are cached in the browser
