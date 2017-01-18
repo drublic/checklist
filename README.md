@@ -61,6 +61,7 @@ Usually I measure the main pages of a project here.
 - [ ] Scripts are loaded in the document head after styles are loaded
 - [ ] Scrolling is possible with 60fps
 - [ ] No usage of `document.write`
+- [ ] CSS animation causing layout(reflow) is not heavily used
 
 ## Device performance
 
