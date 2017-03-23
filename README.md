@@ -1,5 +1,15 @@
 
-# Frontend Checklist for Websites
+# Fueled Frontend Checklist for Websites
+
+Originally forked from [drublic/checklist](https://github.com/drublic/checklist).
+
+This should be included as `CHECKLIST.md` into every frontend project and each item should be ticked off or explained **before** launch:
+
+```
+- [X] This is done
+- [ ] This is not done and must be done before launch
+- [X] **[NIS]** This is not in scope and has been marked as done
+```
 
 ## Performance
 
