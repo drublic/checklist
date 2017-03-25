@@ -11,14 +11,13 @@ This should be included as `CHECKLIST.md` into every frontend project and each i
 - [X] **[NIS]** This is not in scope and has been marked as done
 ```
 
-## Performance
-
 ### General
-
+- [ ] Google Analytics Tracking Code is being used
 - [ ] HTTP/2 is being used
 - [ ] CDN is used for static files
 - [ ] CDN is used for content pages
 - [ ] Cookie-Less Domain is used for static files
+- [ ] Add static asset revisioning (CSS & JS)
 - [ ] DNS prefetching is used
   - [ ] `<link rel="preload" as="script">` (CSS, JS and fonts)
   - [ ] `<link rel="dns-prefetch">` (for Domain, which provides static resources, eg.: Images, and Tracking Tools)
@@ -112,7 +111,6 @@ Usually I measure the main pages of a project here.
 - [ ] No 404-errors
 - [ ] No 500-errors
 - [ ] Canonical Tags are used if applicable
-- [ ] Ratio of code and content is around 25% for shop pages and 50% for content pages
 
 ## Accessibility
 
