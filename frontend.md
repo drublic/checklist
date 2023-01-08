@@ -6,7 +6,7 @@
 ### General
 
 - [ ] HTTP/2 is being used
-- [ ] CDN is used for static files
+- [ ] CDN is used for static filesCancel changes
 - [ ] CDN is used for content pages
 - [ ] Cookie-Less Domain is used for static files
 - [ ] DNS prefetching is used
