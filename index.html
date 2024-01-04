@@ -556,9 +556,9 @@
       }
     }
   </style>
-  <link rel="preload" as="style" href="/checklist/styles/main.min.css" onload="this.rel='stylesheet'">
+  <link rel="preload" as="style" href="styles/main.min.css" onload="this.rel='stylesheet'">
   <noscript>
-    <link rel="stylesheet" href="/styles/main.min.css">
+    <link rel="stylesheet" href="styles/main.min.css">
   </noscript>
   <script>
     /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
@@ -616,8 +616,8 @@
       </div>
       <header class="s-header">
         <div>
-          <h1 class="font-weight-bold">QPM - ✨ Productization Checklists ✨</h1>
-          <p class="sub-heading">🗂 PLM Process Management Tool - ✨ QPM Supervisor✨!</p>
+          <h1 class="font-weight-bold">Release Readiness - ✨ Productization Checklists ✨</h1>
+          <p class="sub-heading">🗂 Release Quality Qualification and PLM Management Tool - ✨ Quality Supervisor✨!</p>
         </div>
 
       </header>
@@ -635,16 +635,16 @@
         </div>
         <div class="s-main__section s-main__filter">
           <aside class="c-tag-filter">
-            <h2 class="c-tag-filter__title">Filter by tags</h2>
+            <h2 class="c-tag-filter__title">Filter by Owner</h2>
             <ul class="c-tag-filter__list">
               <li class="c-tag-filter__item">
                 <button class="js-filter-tag" data-tag="all">All</button>
               </li>
               <li class="c-tag-filter__item">
-                <button class="js-filter-tag" data-tag="milestone-readiness">Milestone Readiness</button>
+                <button class="js-filter-tag" data-tag="milestone-readiness">Development Owner</button>
               </li>
               <li class="c-tag-filter__item">
-                <button class="js-filter-tag" data-tag="PM100">PM100</button>
+                <button class="js-filter-tag" data-tag="support-criteria">support-criteria</button>
               </li>
               <li class="c-tag-filter__item">
                 <button class="js-filter-tag" data-tag="Non-Functional">Non-Functional</button>
@@ -700,11 +700,11 @@
             <div class="s-checklist__inner">
               <div class="s-checklist__header">
                 <div class="s-checklist__title">
-                  <h2 class="s-checklist__header__title">Head</h2>
+                  <h2 class="s-checklist__header__title">Product Criteria</h2>
                   <div class="c-progress">
                     <progress class="c-progress__bar js-progress" value="0" max="100"></progress>
                     <div class="c-progress__counter"><span class="c-progress__label">0 %</span><span
-                        class="c-progress__text">&nbsp;Head items are ✓</span></div>
+                        class="c-progress__text">&nbsp;Product Criteria items are ✓</span></div>
                   </div>
                 </div>
                 <div class="c-tools">
@@ -811,9 +811,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-head-0"><span class="label__title">Doctype: </span><span
-                                class="label__description">The Doctype is HTML5 and is at the top of all your HTML
-                                pages.</span></label>
+                            <label for="c-checklist__item-head-0"><span class="label__title">Roadmap and Initiative List: </span><span
+                                class="label__description">Has every planned service, functionality, feature, architecture and/or customer commitment been completed for this deployment and are all relevant information up to date?.</span></label>
                             <div class="c-checklist__details js-details">
                               <div class="c-checklist__code">
                                 <div class="c-checklist__code__loader js-loader">
@@ -830,8 +829,8 @@
                                       data-src="https://www.google.com/s2/favicons?domain_url=https://www.w3.org/TR/html5/syntax.html#determining-the-character-encoding"
                                       alt="" /><a
                                       href="https://www.w3.org/TR/html5/syntax.html#determining-the-character-encoding"
-                                      target="_blank" rel="noopener noreferrer">Determining the character encoding -
-                                      HTML5 W3C</a>
+                                      target="_blank" rel="noopener noreferrer">Product Roadmap Template -
+                                      Product Vision</a>
                                   </li>
                                 </ul>
                               </div>
@@ -967,8 +966,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-head-2"><span class="label__title">Viewport: </span><span
-                                class="label__description">The viewport is declared correctly.</span></label>
+                            <label for="c-checklist__item-head-2"><span class="label__title">Quality - Definition of Done: </span><span
+                                class="label__description">Has every planned service/functionality/feature for this deployment passed the global DoD definition successfully?</span></label>
                             <div class="c-checklist__details js-details">
                               <div class="c-checklist__code">
                                 <div class="c-checklist__code__loader js-loader">
@@ -1038,10 +1037,10 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-head-3"><span class="label__title">Title: </span><span
-                                class="label__description">A title is used on all pages</span></label>
+                            <label for="c-checklist__item-head-3"><span class="label__title">Product Quality</span><span
+                                class="label__description"> Has every planned service/functionality/feature for this deployment passed the agreed CFURPS+ definition successfully from the previous Ready for Development gate?</span></label>
                             <div class="c-checklist__details js-details">
-                              <p class="c-checklist__text">PM100: Google calculates the pixel width of the characters used
+                              <p class="c-checklist__text">support-criteria: Google calculates the pixel width of the characters used
                                 in the title and cuts off between 472 and 482 pixels. Average character limit would be
                                 around 55 characters</p>
                               <div class="c-checklist__code">
@@ -2225,7 +2224,7 @@
                 <div class="c-checklist">
                   <p class="c-checklist__intro"></p>
                   <ul class="c-checklist__list">
-                    <li class="c-checklist__item js-item  all html milestone-readiness " data-item-priority="high"
+                    <li class="c-checklist__item js-item  all html milestone-readiness" data-item-priority="high"
                       data-item-id="0" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -2300,7 +2299,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all html milestone-readiness " data-item-priority="high"
+                    <li class="c-checklist__item js-item  all html milestone-readiness" data-item-priority="high"
                       data-item-id="1" data-item-check="false" data-item-dropdown="false" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -2353,7 +2352,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all html milestone-readiness ECC " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all html milestone-readinessECC " data-item-priority="medium"
                       data-item-id="2" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -2432,7 +2431,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all html milestone-readiness " data-item-priority="low"
+                    <li class="c-checklist__item js-item  all html milestone-readiness" data-item-priority="low"
                       data-item-id="3" data-item-check="false" data-item-dropdown="false" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -3386,7 +3385,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all Product Repository milestone-readiness " data-item-priority="low"
+                    <li class="c-checklist__item js-item  all Product Repository milestone-readiness" data-item-priority="low"
                       data-item-id="4" data-item-check="false" data-item-dropdown="false" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -4933,7 +4932,7 @@
               <div class="s-checklist__body js-checklist-body" data-body-visibility="visible" aria-hidden="false">
                 <div class="c-checklist">
                   <ul class="c-checklist__list">
-                    <li class="c-checklist__item js-item  all PSS milestone-readiness " data-item-priority="high"
+                    <li class="c-checklist__item js-item  all PSS milestone-readiness" data-item-priority="high"
                       data-item-id="0" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -5460,7 +5459,7 @@
             <div class="s-checklist__body js-checklist-body" data-body-visibility="visible" aria-hidden="false">
               <div class="c-checklist">
                 <ul class="c-checklist__list">
-                  <li class="c-checklist__item js-item  all OSS milestone-readiness " data-item-priority="high"
+                  <li class="c-checklist__item js-item  all OSS milestone-readiness" data-item-priority="high"
                     data-item-id="0" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                     aria-hidden="false">
                     <div class="c-checklist__item__inner">
@@ -5987,7 +5986,7 @@
               <div class="s-checklist__body js-checklist-body" data-body-visibility="visible" aria-hidden="false">
                 <div class="c-checklist">
                   <ul class="c-checklist__list">
-                    <li class="c-checklist__item js-item  all milestone-readiness " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all milestone-readiness" data-item-priority="medium"
                       data-item-id="0" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -6063,7 +6062,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all milestone-readiness " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all milestone-readiness" data-item-priority="medium"
                       data-item-id="1" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -6137,7 +6136,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all milestone-readiness PM100 " data-item-priority="high"
+                    <li class="c-checklist__item js-item  all milestone-readiness support-criteria " data-item-priority="high"
                       data-item-id="2" data-item-check="false" data-item-dropdown="false" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -6182,7 +6181,7 @@
                             <div class="c-tags">
                               <ul class="c-tags__list">
                                 <li class="c-tags__item">Milestone Readiness</li>
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                               </ul>
                             </div>
                           </div>
@@ -6191,7 +6190,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all milestone-readiness " data-item-priority="high"
+                    <li class="c-checklist__item js-item  all milestone-readiness" data-item-priority="high"
                       data-item-id="3" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -6909,7 +6908,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all milestone-readiness " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all milestone-readiness" data-item-priority="medium"
                       data-item-id="2" data-item-check="false" data-item-dropdown="false" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -6963,7 +6962,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all milestone-readiness " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all milestone-readiness" data-item-priority="medium"
                       data-item-id="3" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -7053,7 +7052,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all milestone-readiness " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all milestone-readiness" data-item-priority="medium"
                       data-item-id="4" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -7521,16 +7520,16 @@
               </div>
             </div>
           </section>
-          <section class="s-checklist js-section s-checklist__PM100" data-section="PM100" data-section-id="8"
-            id="section-PM100">
+          <section class="s-checklist js-section s-checklist__support-criteria" data-section="pm100" data-section-id="8"
+            id="section-support-criteria">
             <div class="s-checklist__inner">
               <div class="s-checklist__header">
                 <div class="s-checklist__title">
-                  <h2 class="s-checklist__header__title">PM100</h2>
+                  <h2 class="s-checklist__header__title">support-criteria</h2>
                   <div class="c-progress">
                     <progress class="c-progress__bar js-progress" value="0" max="100"></progress>
                     <div class="c-progress__counter"><span class="c-progress__label">0 %</span><span
-                        class="c-progress__text">&nbsp;PM100 items are ✓</span></div>
+                        class="c-progress__text">&nbsp;support-criteria items are ✓</span></div>
                   </div>
                 </div>
                 <div class="c-tools">
@@ -7598,7 +7597,7 @@
               <div class="s-checklist__body js-checklist-body" data-body-visibility="visible" aria-hidden="false">
                 <div class="c-checklist">
                   <ul class="c-checklist__list">
-                    <li class="c-checklist__item js-item  all PM100 " data-item-priority="high" data-item-id="0"
+                    <li class="c-checklist__item js-item  all support-criteria " data-item-priority="high" data-item-id="0"
                       data-item-check="false" data-item-dropdown="open" data-item-visible="true" aria-hidden="false">
                       <div class="c-checklist__item__inner">
                         <div class="c-checklist__body">
@@ -7612,8 +7611,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-0"
-                              id="c-checklist__item-PM100-0" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-0"
+                              id="c-checklist__item-support-criteria-0" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -7636,7 +7635,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-0"><span class="label__title">Google Analytics:
+                            <label for="c-checklist__item-support-criteria-0"><span class="label__title">Google Analytics:
                               </span><span class="label__description">Google Analytics is installed and correctly
                                 configured.</span></label>
                             <div class="c-checklist__details js-details">
@@ -7656,7 +7655,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                               </ul>
                             </div>
                           </div>
@@ -7675,7 +7674,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all PM100 PM200 html " data-item-priority="medium"
+                    <li class="c-checklist__item js-item  all support-criteria PM200 html " data-item-priority="medium"
                       data-item-id="1" data-item-check="false" data-item-dropdown="open" data-item-visible="true"
                       aria-hidden="false">
                       <div class="c-checklist__item__inner">
@@ -7690,8 +7689,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-1"
-                              id="c-checklist__item-PM100-1" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-1"
+                              id="c-checklist__item-support-criteria-1" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -7714,7 +7713,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-1"><span class="label__title">Headings logic: </span><span
+                            <label for="c-checklist__item-support-criteria-1"><span class="label__title">Headings logic: </span><span
                                 class="label__description">Heading text helps to understand the content in the current
                                 page.</span></label>
                             <div class="c-checklist__details js-details">
@@ -7730,7 +7729,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                                 <li class="c-tags__item">PM200</li>
                                 <li class="c-tags__item">HTML</li>
                               </ul>
@@ -7751,7 +7750,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all PM100 " data-item-priority="high" data-item-id="2"
+                    <li class="c-checklist__item js-item  all support-criteria " data-item-priority="high" data-item-id="2"
                       data-item-check="false" data-item-dropdown="open" data-item-visible="true" aria-hidden="false">
                       <div class="c-checklist__item__inner">
                         <div class="c-checklist__body">
@@ -7765,8 +7764,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-2"
-                              id="c-checklist__item-PM100-2" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-2"
+                              id="c-checklist__item-support-criteria-2" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -7789,7 +7788,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-2"><span class="label__title">sitemap.xml: </span><span
+                            <label for="c-checklist__item-support-criteria-2"><span class="label__title">sitemap.xml: </span><span
                                 class="label__description">A sitemap.xml exists and was submitted to Google Search
                                 Console.</span></label>
                             <div class="c-checklist__details js-details">
@@ -7806,7 +7805,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                               </ul>
                             </div>
                           </div>
@@ -7825,7 +7824,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all PM100 Non-Functional " data-item-priority="high" data-item-id="3"
+                    <li class="c-checklist__item js-item  all support-criteria Non-Functional " data-item-priority="high" data-item-id="3"
                       data-item-check="false" data-item-dropdown="open" data-item-visible="true" aria-hidden="false">
                       <div class="c-checklist__item__inner">
                         <div class="c-checklist__body">
@@ -7839,8 +7838,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-3"
-                              id="c-checklist__item-PM100-3" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-3"
+                              id="c-checklist__item-support-criteria-3" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -7863,7 +7862,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-3"><span class="label__title">robots.txt: </span><span
+                            <label for="c-checklist__item-support-criteria-3"><span class="label__title">robots.txt: </span><span
                                 class="label__description">The robots.txt is not blocking webpages.</span></label>
                             <div class="c-checklist__details js-details">
                               <div class="c-checklist__documentation">
@@ -7889,7 +7888,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                                 <li class="c-tags__item">Non-Functional</li>
                               </ul>
                             </div>
@@ -7909,7 +7908,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all PM100 Non-Functional " data-item-priority="high" data-item-id="4"
+                    <li class="c-checklist__item js-item  all support-criteria Non-Functional " data-item-priority="high" data-item-id="4"
                       data-item-check="false" data-item-dropdown="open" data-item-visible="true" aria-hidden="false">
                       <div class="c-checklist__item__inner">
                         <div class="c-checklist__body">
@@ -7923,8 +7922,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-4"
-                              id="c-checklist__item-PM100-4" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-4"
+                              id="c-checklist__item-support-criteria-4" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -7947,7 +7946,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-4"><span class="label__title">Structured Data:
+                            <label for="c-checklist__item-support-criteria-4"><span class="label__title">Structured Data:
                               </span><span class="label__description">Pages using structured data are tested and are
                                 without errors. Structured data helps crawlers understand the content in the current
                                 page.</span></label>
@@ -8009,7 +8008,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                                 <li class="c-tags__item">Non-Functional</li>
                               </ul>
                             </div>
@@ -8029,7 +8028,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all PM100 html " data-item-priority="medium" data-item-id="5"
+                    <li class="c-checklist__item js-item  all support-criteria html " data-item-priority="medium" data-item-id="5"
                       data-item-check="false" data-item-dropdown="open" data-item-visible="true" aria-hidden="false">
                       <div class="c-checklist__item__inner">
                         <div class="c-checklist__body">
@@ -8043,8 +8042,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-5"
-                              id="c-checklist__item-PM100-5" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-5"
+                              id="c-checklist__item-support-criteria-5" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -8067,7 +8066,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-5"><span class="label__title">Sitemap HTML: </span><span
+                            <label for="c-checklist__item-support-criteria-5"><span class="label__title">Sitemap HTML: </span><span
                                 class="label__description">An HTML sitemap is provided and is accessible via a link in
                                 the footer of your website.</span></label>
                             <div class="c-checklist__details js-details">
@@ -8084,7 +8083,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                                 <li class="c-tags__item">HTML</li>
                               </ul>
                             </div>
@@ -8104,7 +8103,7 @@
                         </div>
                       </div>
                     </li>
-                    <li class="c-checklist__item js-item  all PM100 html " data-item-priority="medium" data-item-id="6"
+                    <li class="c-checklist__item js-item  all support-criteria html " data-item-priority="medium" data-item-id="6"
                       data-item-check="false" data-item-dropdown="open" data-item-visible="true" aria-hidden="false">
                       <div class="c-checklist__item__inner">
                         <div class="c-checklist__body">
@@ -8118,8 +8117,8 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__checkbox">
-                            <input class="checkbox" type="checkbox" name="c-checklist__item-PM100-6"
-                              id="c-checklist__item-PM100-6" />
+                            <input class="checkbox" type="checkbox" name="c-checklist__item-support-criteria-6"
+                              id="c-checklist__item-support-criteria-6" />
                             <svg class="icon icon-checkbox" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                               viewbox="-432 234 94 94" aria-hidden="true" data-icon-name="check">
                               <title>Check</title>
@@ -8142,7 +8141,7 @@
                             </svg>
                           </div>
                           <div class="c-checklist__column c-checklist__label">
-                            <label for="c-checklist__item-PM100-6"><span class="label__title">Pagination link tags:
+                            <label for="c-checklist__item-support-criteria-6"><span class="label__title">Pagination link tags:
                               </span><span class="label__description">Provide rel=&quot;prev&quot; and
                                 rel=&quot;next&quot; to indicate paginated content. </span></label>
                             <div class="c-checklist__details js-details">
@@ -8161,8 +8160,8 @@
                                 <h4>Tools</h4>
                                 <ul class="documentation__list">
                                   <li><img class="c-checklist__favicon" src="/img/icons/1x1.png"
-                                      data-src="https://www.google.com/s2/favicons?domain_url=https://technicalPM100.com/PM100-tools/rel-prev-next/"
-                                      alt="" /><a href="https://technicalPM100.com/PM100-tools/rel-prev-next/"
+                                      data-src="https://www.google.com/s2/favicons?domain_url=https://technicalPM100.com/support-criteria-tools/rel-prev-next/"
+                                      alt="" /><a href="https://technicalPM100.com/support-criteria-tools/rel-prev-next/"
                                       target="_blank" rel="noopener noreferrer">Pagination (rel=&quot;prev/next&quot;)
                                       Non-Functional Tool</a></li>
                                 </ul>
@@ -8170,7 +8169,7 @@
                             </div>
                             <div class="c-tags">
                               <ul class="c-tags__list">
-                                <li class="c-tags__item">PM100</li>
+                                <li class="c-tags__item">support-criteria</li>
                                 <li class="c-tags__item">HTML</li>
                               </ul>
                             </div>
@@ -8211,7 +8210,7 @@
                   <div class="form-group">
                     <input type="text" id="page-title" name="page-title" title="Type the name of your page or URL"
                       required>
-                    <label for="page-title">Page title or URL</label>
+                    <label for="page-title">Project Release Gate or URL</label>
                   </div>
                   <div class="form-group">
                     <input type="text" id="developer-name" name="developer-name"
@@ -8239,27 +8238,27 @@
               <nav class="c-nav">
                 <ul class="c-nav__list c-nav--inline">
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-head"><span class="c-nav__status"
-                        id="js-nav-head" data-notation="0"></span><span>head</span></a></li>
+                        id="js-nav-head" data-notation="0"></span><span>Product Criteria</span></a></li>
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-html"><span class="c-nav__status"
-                        id="js-nav-html" data-notation="0"></span><span>html</span></a></li>
+                        id="js-nav-html" data-notation="0"></span><span>Process Criteria</span></a></li>
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-webfonts"><span
-                        class="c-nav__status" id="js-nav-webfonts" data-notation="0"></span><span>webfonts</span></a>
+                        class="c-nav__status" id="js-nav-webfonts" data-notation="0"></span><span>Documentation, Courseware & Localization</span></a>
                   </li>
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-OSS"><span class="c-nav__status"
-                        id="js-nav-css" data-notation="0"></span><span>OSS</span></a></li>
+                        id="js-nav-css" data-notation="0"></span><span>Legal Criteria</span></a></li>
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-Product_Repository"><span
                         class="c-nav__status" id="js-nav-Product_Repository"
-                        data-notation="0"></span><span>Product Repository</span></a></li>
+                        data-notation="0"></span><span>Marketing Criteria</span></a></li>
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-PSS"><span
-                        class="c-nav__status" id="js-nav-PSS" data-notation="0"></span><span>PSS</span></a></li>    
+                        class="c-nav__status" id="js-nav-PSS" data-notation="0"></span><span>Sales  Criteria</span></a></li>    
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-performance"><span
                         class="c-nav__status" id="js-nav-performance"
-                        data-notation="0"></span><span>performance</span></a></li>
-                  <li class="c-nav__item"><a class="c-button js-scroll" href="#section-PM100"><span class="c-nav__status"
-                        id="js-nav-PM100" data-notation="0"></span><span>PM100</span></a></li>
+                        data-notation="0"></span><span>Delivery Criteria</span></a></li>
+                  <li class="c-nav__item"><a class="c-button js-scroll" href="#section-support-criteria"><span class="c-nav__status"
+                        id="js-nav-support-criteria" data-notation="0"></span><span>Support Criteria</span></a></li>
                   <li class="c-nav__item"><a class="c-button js-scroll" href="#section-PM200"><span
                           class="c-nav__status" id="js-nav-PM200"
-                          data-notation="0"></span><span>PM200</span></a></li>
+                          data-notation="0"></span><span>Security Criteria</span></a></li>
                 </ul>
               </nav>
             </div>
@@ -8331,7 +8330,7 @@
       </footer>
     </div>
   </div>
-  <script src="/checklist/scripts/app.bundle.js" async></script>
+  <script src="/scripts/app.bundle.js" async></script>
   <script>
     if ('serviceWorker' in navigator) {
       //- console.log('CLIENT: service worker registration in progress.');
