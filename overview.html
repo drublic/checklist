@@ -1,0 +1,577 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:vml="urn:schemas-microsoft-com:vml">
+<head>
+        <meta http-equiv="X-UA-Compatible" content="IE=7, IE=9, IE=10, IE=11" />
+    <title>
+
+</title><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script type="text/javascript" src="Scripts/jQuery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="Scripts/jQuery/jquery-pzalias.js"></script>
+    <script type="text/javascript" src="Scripts/jQuery/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="Scripts/jQuery/ui-combobox.js"></script>
+    <script type="text/javascript" src="Scripts/jQuery/jquery.autocomplete.js"></script>
+    <script type="text/javascript" src="Scripts/jQuery/jquery.cookie.js"></script>
+    
+    <style type="text/css">
+        /*IE 7*/
+        html {
+            overflow: hidden;
+        }
+
+        vml\:* {
+            behavior: url(#default#VML);
+        }
+
+        
+    </style>
+    <script type="text/javascript" src="Scripts/_DiagramView.min.js"></script>
+    <script type="text/javascript" src="Scripts/LegacyFunctions.min.js"></script>
+    <script type="text/javascript">
+    // <![CDATA[
+        function SupportsSvg() {
+            return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
+        }
+
+        function Vml() {
+            parent.SetZoomValue(parent, false);
+        }
+
+        function SynchronizeHeaderScrolling(sender) {
+            var verticalHeader = document.getElementById("VerticalHeader");
+            var horizontalHeader = document.getElementById("HorizontalHeader");
+            var horizontalSpacer = document.getElementById("HorizontalSpacer");
+            var viewport = document.getElementById("Viewport");
+						
+            if (viewport.scrollHeight > viewport.clientHeight) {
+                PZ.JQ(verticalHeader).css("margin-right", "17px");
+            }
+            else {
+                PZ.JQ(verticalHeader).css("margin-right", "0");
+            }
+			
+            if (verticalHeader != null) {
+                verticalHeader.scrollLeft = sender.scrollLeft;
+            }
+
+            if (viewport.scrollWidth > viewport.clientWidth && !PZ.JQ(horizontalHeader).hasClass("MarginSet")) {
+                PZ.JQ(horizontalHeader).addClass("MarginSet");
+                PZ.JQ(horizontalHeader).css("margin-bottom", "17px");
+                var currentHeight = PZ.JQ(horizontalHeader).outerHeight();
+                PZ.JQ(horizontalHeader).css("height", currentHeight - 17 + "px");
+				
+                PZ.JQ(horizontalSpacer).addClass("MarginSet");
+                var currentSpacerHeight = PZ.JQ(horizontalSpacer).outerHeight();
+                PZ.JQ(horizontalSpacer).css("height", currentSpacerHeight - 17 + "px");
+            }
+            else {
+                PZ.JQ(horizontalHeader).css("margin-right", "0");
+                PZ.JQ(horizontalHeader).css("margin-bottom", "0");
+            }
+			
+            if (horizontalHeader != null) {
+                horizontalHeader.scrollTop = sender.scrollTop;
+            }
+        }
+
+        function SupportsVml() {
+            if (typeof SupportsVml.Supported == "undefined") {
+                var aDiv = document.body.appendChild(document.createElement("div"));
+                aDiv.innerHTML = '<vml:shape id="vmlshapeid" adj="1" />';
+
+                var aShape = aDiv.firstChild;
+                aShape.style.behavior = "url(#default#VML)";
+
+                SupportsVml.Supported = aShape ? typeof aShape.adj == "object" : true;
+                aDiv.parentNode.removeChild(aDiv);
+            }
+
+            return SupportsVml.Supported
+        }
+
+        PZ.JQ(function () {
+            var currentViewExtension = PZ.JQ("#Content_CurrentViewExtension").val();
+            UpdateViewport(currentViewExtension);
+        });
+
+        function IntialResizeForHSL()
+        {
+            if (PZ.JQ("#HorizontalHeader").length > 0) {					
+                var scrollHeightToSubtract = 0;
+                if (PZ.JQ("#Viewport")[0].scrollWidth > PZ.JQ("#Viewport")[0].clientWidth) {
+                    scrollHeightToSubtract = 17;
+                    PZ.JQ("#HorizontalHeader").addClass("MarginSet");
+                }
+				
+                PZ.JQ("#Viewport").css('margin-bottom', PZ.JQ('#Viewport').outerHeight() * -1 + 'px');
+                PZ.JQ("#HorizontalHeader").css('height', (PZ.JQ(window).height() - (PZ.JQ("#Content_BreadcrumbDiv").outerHeight() + scrollHeightToSubtract)) + 'px');
+                PZ.JQ("#HorizontalSpacer").css('height', (PZ.JQ(window).height() - (PZ.JQ("#Content_BreadcrumbDiv").outerHeight() + scrollHeightToSubtract)) + 'px');
+            }
+        }
+
+		function buildViewSelectionControls()
+		{
+			var currentViewExtension = PZ.JQ("#Content_CurrentViewExtension").val();
+			var viewExtensions = PZ.JQ("#Content_ViewExtensions").val().split("|");
+			var list = "";
+            if (viewExtensions.length > 1) {
+                    list = PZ.JQ("<span id='ChooseDiagramRendererSpan' />");
+
+                var activeIndex = -1;
+                var viewNames = PZ.JQ("#Content_ViewNames").val().split("|");
+
+                for (var i = 0; i < viewExtensions.length; i++) {
+                    if (currentViewExtension == viewExtensions[i]) activeIndex = i;
+                    var extension = viewExtensions[i];
+                    if(extension != "") 
+                        list.append("<input class='ChooseDiagramRendererButton' type='radio'" + (activeIndex == i ? " checked='checked'" : "") + " id='AlternativeView-" + extension + "' /><label for='AlternativeView-" + extension + "'>" + viewNames[i] + "</label>");
+                    else
+                        list.append("<input class='ChooseDiagramRendererButton' type='radio'" + (activeIndex == i ? " checked='checked'" : "") + " id='AlternativeView' /><label for='AlternativeView'>" + viewNames[i] + "</label>");
+                }
+
+			}
+
+			return list;
+		}
+
+        PZ.JQ(".ChooseDiagramRendererButton").live("click", function () {
+			var extension = "";
+			if (PZ.JQ(this).attr("id").indexOf ("AlternativeView-") == 0) {
+				extension = PZ.JQ(this).attr("id").substring("AlternativeView-".length);
+			}
+
+			var imageFileName = PZ.JQ("#Content_ImageFileName").val();
+			if (extension != null && extension != "" && extension.length > 0) imageFileName += "." + extension;
+
+			document.location.href = imageFileName + ".html";
+		});
+
+        function UpdateViewport(extension) {
+            var imageFileName = PZ.JQ("#Content_ImageFileName").val();
+            var width = PZ.JQ("#Content_Width").val();
+            var height = PZ.JQ("#Content_Height").val();
+            var format = "";
+            var isCustomHtmlMatch = false;
+            if (format && format != "") {
+                format = format.toLowerCase();
+            }
+            if (!isCustomHtmlMatch) {
+            if (format != "htm") {
+                if (imageFileName != null) {
+                    if (extension != null && extension != "" && extension.length > 0) imageFileName += "." + extension;
+
+                    if (SupportsSvg()) {
+                        svgChosen = true;
+                        PZ.JQ("#Viewport").html(
+                                    '<object onload="javascript:parent.SetZoomValue(parent, false);javascript:IntialResizeForHSL();" data="' + imageFileName + '.svg" type="image/svg+xml" width="' + width + '" height="' + height + '" style="margin-left: 32px" />'
+                        );
+                        PZ.JQ("#Viewport").attr("style", "overflow: auto;");
+                        PZ.JQ("#VerticalHeader").html(
+                                    '<object onload="javascript:parent.SetZoomValue(parent, false);javascript:IntialResizeForHSL();" data="' + imageFileName + '.svg" type="image/svg+xml" width="' + width + '" height="' + height + '" style="margin-left: 32px" />'
+                        );
+                        PZ.JQ("#VerticalHeader").attr("style", "overflow: auto;");
+                        PZ.JQ("#HorizontalHeader").html(
+                                    '<object onload="javascript:parent.SetZoomValue(parent, false);javascript:IntialResizeForHSL();" data="' + imageFileName + '.svg" type="image/svg+xml" width="' + width + '" height="' + height + '" style="margin-left: 32px" />'
+                        );
+                        PZ.JQ("#HorizontalHeader").attr("style", "overflow: auto;");
+                    } else if (SupportsVml()) {
+                        vmlChosen = true;
+                        PZ.JQ.get(imageFileName + ".vml", function (vmlContent) {
+                            PZ.JQ("#Viewport").html(
+                                '<vml:group coordsize="1000,1000" coordorigin="0,0" style="position:absolute; left:0px; top:0px; width:1000px; height:1000px;">' + vmlContent + '</vml:group>'
+                            );
+                            PZ.JQ("#Viewport").addClass("ScrollableMainContent");
+                            //JK 2013-09-05: Changed due to native zoom function problems in IE8 when using css expressions (which only IEs do support).
+                            parent.ResizeViewport();
+                            if (vmlChosen) { Vml(); }
+                        }, 'Text');
+                    } else {
+                        PZ.JQ("#Viewport").html(
+                            '<img alt="" src="' + imageFileName + '.png" />'
+                        );
+                    }
+
+                    PZ.JQ("#Viewport").css('height', (PZ.JQ(window).height() - PZ.JQ("#Content_BreadcrumbDiv").outerHeight()) + 'px');
+                    
+                    if (PZ.JQ("#VerticalHeader").length > 0) {
+                        PZ.JQ("#Viewport").css('margin-bottom', PZ.JQ('#Viewport').outerHeight() * -1 + 'px');
+                    }
+
+                    RefreshTree(imageFileName, extension);
+                }
+            }
+            else {
+                if (imageFileName != null) {
+                    if (extension != null && extension != "" && extension.length > 0) imageFileName += "." + extension;
+                    PZ.JQ("#Content_Viewport_Html").css('height', (PZ.JQ(window).height() - PZ.JQ("#Content_BreadcrumbDiv").outerHeight()) + 'px');
+                    if (!SupportsSvg()) {
+                        PZ.JQ("#Content_Viewport_Html").addClass("ScrollableMainContent_Html");
+                    }
+                    RefreshTree(imageFileName, extension);
+                }
+            }
+            }
+            else {
+                if (imageFileName != null) {
+                    if (extension != null && extension != "" && extension.length > 0) imageFileName += "." + extension;
+                    PZ.JQ("#Content_Viewport_Html").css('height', (PZ.JQ(window).height() - PZ.JQ("#Content_BreadcrumbDiv").outerHeight()) + 'px');
+                    RefreshTree(imageFileName, extension);
+                }
+            }
+        }
+
+        PZ.JQ(window).load(function () {
+             PZ.JQ("body").css("overflow", "hidden");
+            // highlight corresponding accordion list entry, if not already happened
+            var fileName = document.location.href.substr(document.location.href.lastIndexOf("/") + 1);
+            if (fileName) {
+                fileName = fileName.substr(0, fileName.lastIndexOf("."));
+            }
+
+            var listElement = parent.document.getElementById(fileName);
+            var details = parent.document.getElementById('Details');
+            if ((PZ.JQ(listElement) != null) && (PZ.JQ(listElement).attr("class") == "AccordionListLink") && (PZ.JQ(listElement).parent(".AccordionListLinkContainer")) && !(PZ.JQ(listElement).parent(".AccordionListLinkContainer").hasClass("ClickedAccordionListLinkContainer ui-corner-all"))) {
+                PZ.JQ(listElement).parent(".AccordionListLinkContainer").addClass("ClickedAccordionListLinkContainer ui-corner-all");
+                PZ.JQ(listElement).addClass("ClickedAccordionListLink");
+                // fade in detail content on load
+				if (PZ.JQ(".List").find(".ClickedSearchEntries").attr("id") != undefined) {
+					details.style.display = "inline";
+				}
+            }
+
+            if ((PZ.JQ(listElement) != null) && (PZ.JQ(listElement).attr("class") == "AccordionListSubLink") && (PZ.JQ(listElement).parent(".AccordionListSubLinkContainer")) && !(PZ.JQ(listElement).parent(".AccordionListSubLinkContainer").hasClass("ClickedAccordionListSubLinkContainer ui-corner-all"))) {
+                PZ.JQ(listElement).parent(".AccordionListSubLinkContainer").addClass("ClickedAccordionListSubLinkContainer ui-corner-all");
+                PZ.JQ(listElement).addClass("ClickedAccordionListSubLink");
+                // fade in detail content on load
+				if (PZ.JQ(".List").find(".ClickedSearchEntries").attr("id") != undefined) {
+					details.style.display = "inline";
+				}
+            }
+        });
+
+        // important Legacy-Functions for Handling of VML
+        var __DiagramViewer = new DV();
+
+        function DV() {
+            this.scale = "100%";
+            this.GetPercentScaleString = function () {
+                return this.scale;
+            }
+        }
+
+        function SetViewScale(scale) {
+            var vp = document.getElementById("Viewport");
+            if (vp != null) {
+                vp.firstChild.coordsize = (1000 / scale) + "," + (1000 / scale);
+                __DiagramViewer.scale = (scale * 100) + "%";
+            }
+            var vh = document.getElementById("VerticalHeader");
+            if (vh != null) {
+                vh.firstChild.coordsize = (1000 / scale) + "," + (1000 / scale);
+                __DiagramViewer.scale = (scale * 100) + "%";
+            }
+            var hh = document.getElementById("HorizontalHeader");
+            if (hh != null) {
+                hh.firstChild.coordsize = (1000 / scale) + "," + (1000 / scale);
+                __DiagramViewer.scale = (scale * 100) + "%";
+            }
+        }
+
+        function RefreshTree(imageFileName, extension) {
+            var tmpExtension = "";
+            if (extension && extension != "") {
+                tmpExtension = extension;
+            }
+            var id = (tmpExtension != "") ? imageFileName.substring(2, (imageFileName.length - 5 - (tmpExtension.length + 1))) : imageFileName.substring(2, (imageFileName.length - 5));
+            parent.document.getElementById('TREENODEID').value = id;
+            parent.document.getElementById('TREENODEID').onchange();
+        }
+
+        
+        PZ.JQ(function () {
+            var tmpNavContentPanel = parent.document.getElementById("NavContentPanel");
+            var tmpNavigationCollapsed = parent.document.getElementById("NAVIGATIONCOLLAPSED");
+            if ((tmpNavContentPanel != null) && (tmpNavigationCollapsed != null)) {
+                PZ.JQ('#ToggleNavigationContainer').toggle(function () {
+                    PZ.JQ(tmpNavContentPanel).animate({ width: 32 });
+                    PZ.JQ('#ToggleNavigationIcon').removeClass("ui-icon-triangle-1-w ToggleNavigationIconOpened");
+                    PZ.JQ('#ToggleNavigationIcon').addClass("ui-icon-triangle-1-e ToggleNavigationIconClosed");
+                    PZ.JQ(tmpNavigationCollapsed).val("true");
+                }, function () {
+                    PZ.JQ(tmpNavContentPanel).animate({ width: 240 });
+                    PZ.JQ('#ToggleNavigationIcon').removeClass("ui-icon-triangle-1-e ToggleNavigationIconClosed");
+                    PZ.JQ('#ToggleNavigationIcon').addClass("ui-icon-triangle-1-w ToggleNavigationIconOpened");
+                    PZ.JQ(tmpNavigationCollapsed).val("false");
+                });
+            }
+
+            var tmpDetailContentPanel = parent.document.getElementById("DetailContentPanel");
+            var tmpDetailIFrame = parent.document.getElementById("Details");
+            var tmpDetailsCollapsed = parent.document.getElementById("DETAILSCOLLAPSED");
+            if ((tmpDetailContentPanel != null) && (tmpDetailIFrame != null) && (tmpDetailsCollapsed != null)) {
+                PZ.JQ('#ToggleDetailsContainer').toggle(function () {
+                    PZ.JQ(tmpDetailContentPanel).animate({ width: 36 });
+                    PZ.JQ('#ToggleDetailContentPanelIcon').removeClass("ui-icon-triangle-1-e ToggleDetailContentPanelIconOpened");
+                    PZ.JQ('#ToggleDetailContentPanelIcon').addClass("ui-icon-triangle-1-w ToggleDetailContentPanelIconClosed");
+                    PZ.JQ(tmpDetailIFrame).css("display", "none");
+                    PZ.JQ(tmpDetailsCollapsed).val("true");
+                }, function () {
+                    PZ.JQ(tmpDetailContentPanel).animate({ width: 340 });
+                    PZ.JQ('#ToggleDetailContentPanelIcon').removeClass("ui-icon-triangle-1-w ToggleDetailContentPanelIconClosed");
+                    PZ.JQ('#ToggleDetailContentPanelIcon').addClass("ui-icon-triangle-1-e ToggleDetailContentPanelIconOpened");
+                    PZ.JQ(tmpDetailIFrame).css("display", "inline");
+                    PZ.JQ(tmpDetailsCollapsed).val("false");
+                });
+            }
+        });
+        
+    // ]]>
+    </script>
+
+    <script type="text/javascript" src="Scripts/WebApp.min.js"></script>
+    <script type="text/javascript">
+        // <![CDATA[
+        function SupportsSvg_General() {
+            return document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#BasicStructure", "1.1");
+        }
+
+        PZ.JQ(function () {
+
+            if (self.name == "Main") {
+                if (parent) {
+                    // hide detail content if necessary
+                    var hideDetailContent = PZ.JQ('#Content_HideDetailContent').val();
+                    var detailContentPanel = parent.PZ.JQ("#DetailContentPanel");
+                    if (hideDetailContent && hideDetailContent.toLowerCase() == "true") {
+                        if (!SupportsSvg_General()) {
+                            PZ.JQ(detailContentPanel).css("width", "0px");
+                        }
+                        else {
+                            PZ.JQ(detailContentPanel).css("display", "none");
+                            PZ.JQ('#ToggleDetailsContainer').css("display", "none");
+                        }
+                    }
+                    else {
+                        if (!SupportsSvg_General()) {
+                            PZ.JQ(detailContentPanel).css("width", "340px");
+                        }
+                        else {
+                            PZ.JQ(detailContentPanel).css("display", "");
+                            PZ.JQ('#ToggleDetailsContainer').css("display", "");
+                        }
+                    }
+
+                    parent.PZ.JQ("#ToolbarControl_SymbioProcessButton").button("option", "disabled", true);
+                    parent.PZ.JQ(".ToolbarModelTypeTriggerableButton").button("option", "disabled", true);
+                    var diagramType = (PZ.JQ("#Content_DiagramType").length > 0) ? PZ.JQ("#Content_DiagramType").val() : "";
+                    var editableElements = "";
+                    var evaluateButtonCustomAttributes = false;
+                    var evaluateDomainNameAttribute = false;
+
+                    var domainNameAttribute = "";
+                    if (evaluateDomainNameAttribute) {
+                        domainNameAttribute = PZ.JQ("#Content_DomainName").val();
+                    }
+
+                    var editButtonCustomAttribute = "";
+                    var editButtonCustomAttributeCompareValues = "";
+                    if (editButtonCustomAttributeCompareValues.length > 0) {
+                        editButtonCustomAttributeCompareValues = editButtonCustomAttributeCompareValues.split(";");
+                    }
+                    var editButtonCustomAttribute2 = "";
+                    var editButtonCustomAttribute2CompareValues = "";
+                    if (editButtonCustomAttribute2CompareValues.length > 0) {
+                        editButtonCustomAttribute2CompareValues = editButtonCustomAttribute2CompareValues.split(";");
+                    }
+                    if (diagramType != "" && ((evaluateDomainNameAttribute && domainNameAttribute != null) || !evaluateDomainNameAttribute)) {
+                        var customAttributeMatchRequired = false;
+                        var customAttributeMatch = false;
+                        if (evaluateButtonCustomAttributes && editButtonCustomAttribute != null &&
+                            editButtonCustomAttribute != "") {
+
+                            customAttributeMatchRequired = true;
+                            var customAttribute = PZ.JQ("#Content_CustomAttribute").val();
+
+                            if (editButtonCustomAttributeCompareValues != null && editButtonCustomAttributeCompareValues.length > 0) {
+                                PZ.JQ.each(editButtonCustomAttributeCompareValues, function (index, value) {
+                                    if (value == customAttribute && !customAttributeMatch) {
+                                        customAttributeMatch = true;
+                                    }
+                                });
+                            }
+                            else if (customAttribute != null && customAttribute != ""){
+                                customAttributeMatch = true;
+                            }
+
+                            if (customAttributeMatch) {
+                                if (editButtonCustomAttribute2 != null &&
+                                    editButtonCustomAttribute2 != "") {
+                                    var customAttribute2 = PZ.JQ("#Content_CustomAttribute2").val();
+
+                                    customAttributeMatch = false;
+
+                                    if (editButtonCustomAttribute2CompareValues != null && editButtonCustomAttribute2CompareValues.length > 0) {
+                                        PZ.JQ.each(editButtonCustomAttribute2CompareValues, function (index, value) {
+                                            if (value == customAttribute2 && !customAttributeMatch) {
+                                                customAttributeMatch = true;
+                                            }
+                                        });
+                                    }
+                                    else if (customAttribute2 != null && customAttribute2 != ""){
+                                        customAttributeMatch = true;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (editableElements.length > 0) {
+                            editableElements = editableElements.split(" ");
+                            if (editableElements.length > 0 && editableElements[0] != "") {
+                                var matchFound = false;
+                                PZ.JQ.each(editableElements, function (index, value) {
+                                    if (diagramType == value && !matchFound) {
+                                        if (!customAttributeMatchRequired || (customAttributeMatchRequired && customAttributeMatch)) {
+                                            parent.PZ.JQ("#ToolbarControl_SymbioProcessButton").button("option", "disabled", false);
+                                            parent.PZ.JQ(".ToolbarModelTypeTriggerableButton").button("option", "disabled", false);
+                                            matchFound = true;
+                                        }
+                                    }
+                                });
+                            }
+                            else {
+                                if (!customAttributeMatchRequired || (customAttributeMatchRequired && customAttributeMatch)) {
+                                    parent.PZ.JQ("#ToolbarControl_SymbioProcessButton").button("option", "disabled", false);
+                                    parent.PZ.JQ(".ToolbarModelTypeTriggerableButton").button("option", "disabled", false);
+                                    matchFound = true;
+                                }
+                            }
+                        }
+                        else {
+                            if (!customAttributeMatchRequired || (customAttributeMatchRequired && customAttributeMatch)) {
+                                parent.PZ.JQ("#ToolbarControl_SymbioProcessButton").button("option", "disabled", false);
+                                parent.PZ.JQ(".ToolbarModelTypeTriggerableButton").button("option", "disabled", false);
+                                matchFound = true;
+                            }
+                        }
+                    }
+                    else {
+                        //Do nothing.
+                    }
+
+                    parent.PZ.JQ("#ToolbarControl_DiagramViewModeButton").button("option", "disabled", true);
+                    parent.PZ.JQ("#ToolbarControl_AddToFavoriteButton").button("option", "disabled", false);
+                    parent.PZ.JQ("#ToolbarControl_FavoriteButton").button("option", "disabled", false);
+                    var viewExtensions = PZ.JQ("#Content_ViewExtensions").val();
+                    if (viewExtensions) {
+                        viewExtensions = viewExtensions.split("|");
+                        if (viewExtensions.length > 1) {
+                            parent.PZ.JQ("#ToolbarControl_DiagramViewModeButton").button("option", "disabled", false);
+                        }
+
+                    }
+                    var isNotFavorizableContent = PZ.JQ("#Content_IsNotFavorizable");
+                    if (isNotFavorizableContent != null && isNotFavorizableContent.length > 0) {
+                        parent.PZ.JQ("#ToolbarControl_AddToFavoriteButton").button("option", "disabled", true);
+                    }
+
+                    var isNotLinkableContent = PZ.JQ("#Content_IsNotLinkable");
+                    if (isNotLinkableContent != null && isNotLinkableContent.length > 0) {
+                        parent.PZ.JQ("#ToolbarControl_FavoriteButton").button("option", "disabled", true);
+                    }
+                }
+            }
+
+            PZ.JQ('#spanner').addClass(self.name);
+        });
+        // ]]>
+    </script>
+<link href="App_Themes/Standard/a-standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/a-user.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/jQuery/datatables/css/jquery.dataTables.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/jQuery/jstree/default/style.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/jQuery/smoothness/jquery-ui-1.8.21.custom.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/z-standard.css" type="text/css" rel="stylesheet" /><link href="App_Themes/Standard/z-user.css" type="text/css" rel="stylesheet" /></head>
+<body id="contentBody" class="VisiOneBody" style="overflow: auto;">
+    <div style="display: none;">
+        <input name="ctl00$ComboboxHeightForIE" type="text" id="ComboboxHeightForIE" />
+        <input name="ctl00$ComboboxHeightForOtherBrowser" type="text" id="ComboboxHeightForOtherBrowser" />
+    </div>
+    <form name="form1" method="post" action="./DiagramMain.aspx?guid=30ce6f9c-926f-41ae-9fc4-c34813940aec&amp;lcid=1033&amp;data=" id="form1">
+<div>
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwULLTE5NjczNTk4NzEPZBYCZg9kFgQCAQ9kFgICBg8VBwAFZmFsc2UFZmFsc2UAAAAAZAIHD2QWAgIBD2QWAgIeDxYCHgVzdHlsZQUjbWFyZ2luLWxlZnQ6NDZweDttYXJnaW4tcmlnaHQ6NDZweDtkZHCXLP+oo0TVFc6P+vXzYgUScpWulZ8AKDbG2QDACj72" />
+</div>
+
+
+<script type="text/javascript">
+//<![CDATA[
+SymbolHighlightFillColor = "#990000";
+SymbolHighlightStrokeColor = "#FFFFFF";
+SymbolHoverFillColor = "#990000";
+SymbolHoverStrokeColor = "#FFFFFF";
+SymbolInactiveFillColor = "#D9D9D9";
+SymbolInactiveStrokeColor = "#D9D9D9";
+SymbolInactiveTextColor = "#000000";
+SymbolHighlightTextColor = "#FFFFFF";
+SymbolHoverTextColor = "#FFFFFF";//]]>
+</script>
+
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="EC8C227F" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEdACD939LGCjW3q3c3FIWXkUflHzbwJEj51EPE6fr1oLlplVd9OWVeM7+UgNgRdgO3Cx4pRAOORrbQMsoRE1XcOnrQTpgliepSJyc84ZX4NT+0EBiy7nPF7ZAYaYDD0NJ/IqyIzq4QVs3aKtcjAwJRFDcIyHwQG0A3bt1Gof1NyPODLNhloHnQ7+wTJuaDIwLXZkcybBtmZwdCd2ykHQlIyslv6h7yS5NUx/Z6NusPipWP+MBviocPyyXglsRTZfvTHndS4un9CJAxW9R+0hxPY+PFETatU5ir/pyVHsicaXLmVJH1f9ObIKL1z6zMtY1WGEKKGWXyr+perRJQsa+ZjiZELtfc7Fmm63r6OVriP9H5e8K6oJ7KJ2KoIiQbq0iJdBlOC/jioV40qykscd0Ao+qlZvfsItQ1Sb5g+YJsqYDsedrdRMZZzy8EjdQP8AD7hJnAXn51DKgrbi/ABGLEz4BrQVkg0KT1vLSQ1pJjYuijmkHmHSA3O3dBK13Bp9u+Xj74YFrlvPwIQaJCfDrQ6YUKJDjQaM5GJf0EUpglZt2G1OH+eJ71uS7688ubmbrNjhziBOdFc7ibs5EsGFmFuaBHOUmmLGL6C9w41qt6IWw4koa/TR+yLdmY+I/fiQKxOi+ZnDGHm+/GyKo2DCrjLn0scdcCbZ982QgWGi5ZZquHgEOwZlwFCTJFxgejsh5x4958j1j3EUai85S1kf2GQpJp" />
+</div>
+        <div id="spanner">
+            
+    <input name="ctl00$Content$DiagramName" type="hidden" id="Content_DiagramName" value="Product Lifecycle Management Agile (PLM)" />
+    <input name="ctl00$Content$EscapedDiagramName" type="hidden" id="Content_EscapedDiagramName" value="Product Lifecycle Management Agile (PLM)" />
+    <input name="ctl00$Content$StrongerEscapedDiagramName" type="hidden" id="Content_StrongerEscapedDiagramName" value="Product_Lifecycle_Management_Agile__PLM_" />
+    <input name="ctl00$Content$DiagramType" type="hidden" id="Content_DiagramType" value="MT_EEPC" />
+    <input name="ctl00$Content$FeedbackEMail" type="hidden" id="Content_FeedbackEMail" value="info@p-und-z.de" />
+    <input name="ctl00$Content$ViewExtensions" type="hidden" id="Content_ViewExtensions" value="|TV|ALT" />
+    <input name="ctl00$Content$CurrentViewExtension" type="hidden" id="Content_CurrentViewExtension" />
+    <input name="ctl00$Content$ViewNames" type="hidden" id="Content_ViewNames" value="Standard|Table|Milestone-View" />
+    <input name="ctl00$Content$ImageFileName" type="hidden" id="Content_ImageFileName" value="M_30ce6f9c-926f-41ae-9fc4-c34813940aec_1033" />
+    <input name="ctl00$Content$Guid" type="hidden" id="Content_Guid" value="30ce6f9c-926f-41ae-9fc4-c34813940aec" />
+    <input name="ctl00$Content$Lcid" type="hidden" id="Content_Lcid" value="1033" />
+    <input name="ctl00$Content$Width" type="hidden" id="Content_Width" value="1510" />
+    <input name="ctl00$Content$Height" type="hidden" id="Content_Height" value="2259" />
+    <input name="ctl00$Content$ExecutionTimeSpan" type="hidden" id="Content_ExecutionTimeSpan" value="(provided by server)" />
+
+    <input name="ctl00$Content$ProcessVersion" type="hidden" id="Content_ProcessVersion" />
+    <input name="ctl00$Content$ProcessState" type="hidden" id="Content_ProcessState" />
+    <input name="ctl00$Content$FeedbackCategory" type="hidden" id="Content_FeedbackCategory" />
+    <input name="ctl00$Content$FeedbackState" type="hidden" id="Content_FeedbackState" />
+    <input name="ctl00$Content$YourFeedback" type="hidden" id="Content_YourFeedback" />
+    <input name="ctl00$Content$ProcessManagerName" type="hidden" id="Content_ProcessManagerName" />
+    <input name="ctl00$Content$ProcessManagerEmail" type="hidden" id="Content_ProcessManagerEmail" />
+    <input name="ctl00$Content$ProcessOwnerName" type="hidden" id="Content_ProcessOwnerName" />
+    <input name="ctl00$Content$ProcessOwnerEmail" type="hidden" id="Content_ProcessOwnerEmail" />
+    <input name="ctl00$Content$ObjectsAttributeTypeDisplayName" type="hidden" id="Content_ObjectsAttributeTypeDisplayName" value="(provided by server)" />
+    <input name="ctl00$Content$HideDetailContent" type="hidden" id="Content_HideDetailContent" value="False" />
+    <input name="ctl00$Content$DomainName" type="hidden" id="Content_DomainName" />
+    <input name="ctl00$Content$CustomAttribute" type="hidden" id="Content_CustomAttribute" />
+    <input name="ctl00$Content$CustomAttribute2" type="hidden" id="Content_CustomAttribute2" />
+    <input name="ctl00$Content$AdditionalDocumentGuid" type="hidden" id="Content_AdditionalDocumentGuid" />
+    
+    
+    <div style="width: 100%; display: inline-block;">
+        <div id="ToggleNavigationContainer" class="ToggleNavigationContainer">
+            <span id="ToggleNavigationIcon" class="ui-icon ui-icon-triangle-1-w ToggleNavigationIconOpened"></span>
+        </div>
+        <div id="ToggleDetailsContainer" class="ToggleDetailsContainer">
+            <span id="ToggleDetailContentPanelIcon" class="ui-icon ui-icon-triangle-1-e ToggleDetailContentPanelIconOpened"></span>
+        </div>
+        <div id="Content_BreadcrumbDiv" class="Breadcrumb" style="margin-left:46px;margin-right:46px;"><span id="Content_BreadcrumbLast" class="BreadcrumbLastText" onclick="javascript:Breadcrumb_OnClick(this, &#39;M_30ce6f9c-926f-41ae-9fc4-c34813940aec_1033.html&#39;, &#39;D_30ce6f9c-926f-41ae-9fc4-c34813940aec_1033.html&#39;);">Product Lifecycle Management Agile (PLM)</span><span class="BreadcrumbFirstElems"><span id="Content_Breadcrumb" class="BreadcrumbText" onclick="javascript:Breadcrumb_OnClick(this, &#39;M_398e889e-80de-4441-895c-07e89ecd5bc3_1033.html&#39;, &#39;D_398e889e-80de-4441-895c-07e89ecd5bc3_1033.html&#39;);">SIPEX View</span><span class="BreadcrumbText"> &gt; </span><span id="Content_Breadcrumb" class="BreadcrumbText" onclick="javascript:Breadcrumb_OnClick(this, &#39;M_02b6a677-3b2d-48e2-be80-52e81645beb8_1033.html&#39;, &#39;D_02b6a677-3b2d-48e2-be80-52e81645beb8_1033.html&#39;);">Variants View</span><span class="BreadcrumbText"> &gt; </span></span><span id="Content_BreadcrumbSecondRow" class="BreadcrumbSecondRow"> </span></div>
+        
+    </div>
+    <div style="clear: both;">
+    </div>
+    
+    <div id="AlternativeViewSwitch" style="display: none; position: absolute; top: 2px; right: 40px;">
+        <div id="AlternativeViewPanel" style="display: none;">
+        </div>
+    </div>
+    
+    <div id="Viewport" style="overflow: auto;" onscroll="SynchronizeHeaderScrolling(this)">
+    </div>
+    
+        </div>
+    </form>
+</body>
+</html>
